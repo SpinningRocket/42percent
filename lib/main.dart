@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import './pages/timeboards_page.dart' as TimeBoardsPage;
-import './pages/statistics_page.dart' as StatisticsPage;
-import './pages/profile_page.dart' as ProfilePage;
-import './pages/settings_page.dart' as SettingsPage;
+import './pages/timeboards_page.dart';
+import './pages/statistics_page.dart';
+import './pages/profile_page.dart';
+import './pages/settings_page.dart';
 
-TextStyle navBarItemTitleStyle = new TextStyle(color: Colors.black);
+final TextStyle navBarItemTitleStyle = new TextStyle(color: Colors.black);
 
 void main() {
   runApp(new MaterialApp(
@@ -14,12 +14,14 @@ void main() {
 
 class MTabView extends StatefulWidget {
   @override
-  MTabViewState createState() => new MTabViewState();
+  _MTabViewState createState() => new _MTabViewState();
 }
 
-class MTabViewState extends State<MTabView> with SingleTickerProviderStateMixin {
+class _MTabViewState extends State<MTabView> with SingleTickerProviderStateMixin {
    
    int _currentIndex = 0;
+
+   //TODO: Icons ersetzen
    final _navBarItems = <BottomNavigationBarItem>[
            new BottomNavigationBarItem(icon: new Icon(Icons.donut_large), title: new Text("TimeBoards", style: navBarItemTitleStyle)),
            new BottomNavigationBarItem(icon: new Icon(Icons.equalizer), title: new Text("Statistics", style: navBarItemTitleStyle)),
@@ -36,28 +38,28 @@ class MTabViewState extends State<MTabView> with SingleTickerProviderStateMixin 
               offstage: _currentIndex != 0,
               child: new TickerMode(
                 enabled: _currentIndex == 0,
-                child: new MaterialApp(home: new TimeBoardsPage.TimeBoardPage()),
+                child: new MaterialApp(home: new TimeBoardPage()),
               ),
             ),
             new Offstage(
               offstage: _currentIndex != 1,
               child: new TickerMode(
                 enabled: _currentIndex == 1,
-                child: new MaterialApp(home: new StatisticsPage.StatisticsPage()),
+                child: new MaterialApp(home: new StatisticsPage()),
               ),
             ),
             new Offstage(
               offstage: _currentIndex != 2,
               child: new TickerMode(
                 enabled: _currentIndex == 2,
-                child: new MaterialApp(home: new ProfilePage.ProfilePage()),
+                child: new MaterialApp(home: new ProfilePage()),
               ),
             ),
             new Offstage(
               offstage: _currentIndex != 3,
               child: new TickerMode(
                 enabled: _currentIndex == 3,
-                child: new MaterialApp(home: new SettingsPage.SettingsPage()),
+                child: new MaterialApp(home: new SettingsPage()),
               ),
             ),
           ],
